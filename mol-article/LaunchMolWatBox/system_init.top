@@ -1,0 +1,13 @@
+; Include forcefield parameters
+#include "../itps/martini_v3.0.0.itp"
+#include "../itps/martini_v3.0.0_solvents_v1.itp"
+
+#include "xxx.itp"
+
+
+[ system ]
+; Name
+ABC in a solvent
+
+[ molecules ]
+; Compound        #mols

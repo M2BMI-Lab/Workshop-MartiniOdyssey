@@ -1,0 +1,16 @@
+#include "../itps/martini_v3.0.0.itp"
+#include "../itps/martini_v3.0.0_solvents_v1.itp"
+#include "../itps/martini_v3.0.0_phospholipids_v1.itp"
+#include "../itps/martini_v3.0.0_ions_v1.itp"
+#include "molname.itp"
+#include "Protein.itp"
+
+[ system ]
+; name
+Protein in INSANE! Membrane UpperLeaflet>POPC=1 LowerLeaflet>POPC=1
+
+[ molecules ]
+; name  number
+Protein          1
+POPC           204
+POPC           205
