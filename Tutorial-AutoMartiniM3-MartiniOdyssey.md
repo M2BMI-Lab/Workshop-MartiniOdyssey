@@ -15,17 +15,13 @@ To use AutomartiniM3
  
 On the example of caffeine molecule
  - From a SMILES code:  
-   '''
    
        python -m auto_martiniM3 --smi "CN1C=NC2=C1C(=O)N(C(=O)N2C)C" --mol CAFF --aa CAFF_aa.gro
 
-   '''  
  - From a SDF file:  
-   '''
    
        python -m auto_martiniM3 --sdf caffeine.sdf --mol CAF_SD
 
-   '''
    
 ### Testing the model in a water box
  
