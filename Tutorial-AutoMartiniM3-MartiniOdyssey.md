@@ -23,7 +23,7 @@ On the example of caffeine molecule
        python -m auto_martiniM3 --sdf caffeine.sdf --mol CAF_SD
 
 <p align="center">
-  <img src="./image.png" alt="Caffeine molecule" width="220">
+  <img src="./image/caffeine_AA.png" alt="Caffeine molecule" width="220">
 </p>
 <p align="center">
   <em>Figure 1 | Structure of the caffeine molecule</em>
