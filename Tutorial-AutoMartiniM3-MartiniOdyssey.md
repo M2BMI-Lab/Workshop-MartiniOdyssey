@@ -50,12 +50,13 @@ Run the commands with GROMACS in bash:
     
         cp system_init.top system.top
    
-*  You 
-        solvent_lines=$(grep $solvent_name initial_${solute_name}.gro | wc -l)
-        solvent_molecules=$(expr $solvent_lines / $solvent_atoms )
-        echo "$solute_name               1" >> system.top
-        echo "$solvent_name               $solvent_molecules" >> system.top
-        sed -i'' -e  s"/xxx.itp/${solute_name}.itp/"g system.top
+*  To write a correct topology file, you have to add the itp file previously create with Auto Martini M3
+   and you have to ou must evaluate the nomber of water molecules with is add in your system. You can use these commands line 
+
+        water_mols=$(grep W  CAFF_CG_BW | wc -l)
+        echo "CAFF               1" >> system.top
+        echo "W               $water_mols" >> system.top
+        sed -i'' -e  s"/xxx.itp/CAFF.itp/"g system.top
         sed -i'' -e  s"/ABC/${solute_name}/"g system.top
     
 *   run minimization, equilibration and short production
