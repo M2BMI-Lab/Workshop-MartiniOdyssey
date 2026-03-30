@@ -49,6 +49,7 @@ Run the commands with GROMACS in bash:
    If it does not, adjust the Martini path accordingly
     
         cp system_init.top system.top
+   
 *  You 
         solvent_lines=$(grep $solvent_name initial_${solute_name}.gro | wc -l)
         solvent_molecules=$(expr $solvent_lines / $solvent_atoms )
