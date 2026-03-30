@@ -50,8 +50,8 @@ Run the commands with GROMACS in bash:
     
         cp system_init.top system.top
    
-*  To write a correct topology file, you have to add the itp file previously create with Auto Martini M3
-   and you have to ou must evaluate the nomber of water molecules with is add in your system. You can use these commands line 
+*  To generate a correct topology file, include the ITP file previously created with Auto Martini M3.
+You must also determine the number of water molecules present in your system. The following command lines can be used:
 
         water_mols=$(grep W  CAFF_CG_BW | wc -l)
         echo "CAFF               1" >> system.top
