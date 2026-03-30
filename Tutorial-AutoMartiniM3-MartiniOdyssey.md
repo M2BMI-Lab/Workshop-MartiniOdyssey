@@ -24,7 +24,7 @@ On the example of caffeine molecule
 
 <p align="center">
   <img src="./image/caffeine_AA.png" alt="Caffeine molecule" width="220">  
-  <img src="./image/caffeine_CG.png" alt="Caffeine molecule CG" width="220">  
+  <img src="./image/caffeine_CG.png" alt="Caffeine molecule CG">  
 </p>
 <p align="center">
   <em>Figure 1 | Structure of the caffeine molecule</em>
