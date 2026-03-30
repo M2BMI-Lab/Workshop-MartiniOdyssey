@@ -57,15 +57,22 @@ You must also determine the number of water molecules present in your system. Th
         echo "CAFF               1" >> system.top
         echo "W               $water_mols" >> system.top
         sed -i'' -e  s"/xxx/CAFF/"g system.top
+   
+## How to prepare and run minimization , equilibration and short production  
+
+# Minimization
+
     
-*   run minimization, equilibration and short production
-     
+       
+    gmx grompp -p system.top -c CAFF_CG_BW.gro -f martini_em.mdp  -o 1-min_CAFF_CG.tpr -po 1-min.mdp  -maxwarn 3
+    gmx mdrun -v -deffnm 1-min_${solute_name} -nt 8 >> mdrun.log 2>&1
+
+# Equilibration
     
-        gmx grompp -p system.top -c initial_${solute_name}.gro -f martini_em.mdp  -o 1-min_${solute_name}.tpr -po 1-min.mdp  -maxwarn 3
-        gmx mdrun -v -deffnm 1-min_${solute_name} -nt 8 >> mdrun.log 2>&1
-        
-        gmx grompp -p system.top -c 1-min_${solute_name}.gro   -f martini_eq.mdp  -o 2-eq_${solute_name}.tpr  -po 2-eq.mdp  -maxwarn 3
-        gmx mdrun -v -deffnm 2-eq_${solute_name}  -nt 8  >> mdrun.log 2>&1
+    gmx grompp -p system.top -c 1-min_${solute_name}.gro   -f martini_eq.mdp  -o 2-eq_${solute_name}.tpr  -po 2-eq.mdp  -maxwarn 3
+    gmx mdrun -v -deffnm 2-eq_${solute_name}  -nt 8  >> mdrun.log 2>&1
+
+# Production  
         
         gmx grompp -p system.top -c 2-eq_${solute_name}.gro    -f martini_run.mdp -o 3-run_${solute_name}.tpr -po 3-run.mdp  -maxwarn 3
         gmx mdrun -v -deffnm 3-run_${solute_name}  -nt 12
