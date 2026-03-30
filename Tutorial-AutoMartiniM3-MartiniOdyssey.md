@@ -67,22 +67,25 @@ You must also determine the number of water molecules present in your system. Th
     gmx grompp -p system.top -c CAFF_CG_BW.gro -f martini_em.mdp  -o 1-min_CAFF_CG.tpr -po 1-min.mdp  -maxwarn 3
     gmx mdrun -v -deffnm 1-min_${solute_name} -nt 8 >> mdrun.log 2>&1
 
-# Equilibration
+#### Equilibration
     
     gmx grompp -p system.top -c 1-min_${solute_name}.gro   -f martini_eq.mdp  -o 2-eq_${solute_name}.tpr  -po 2-eq.mdp  -maxwarn 3
     gmx mdrun -v -deffnm 2-eq_${solute_name}  -nt 8  >> mdrun.log 2>&1
 
-# Production  
+#### Production  
         
         gmx grompp -p system.top -c 2-eq_${solute_name}.gro    -f martini_run.mdp -o 3-run_${solute_name}.tpr -po 3-run.mdp  -maxwarn 3
         gmx mdrun -v -deffnm 3-run_${solute_name}  -nt 12
-    
+
+ __If the simulation in a water box will finish without any problems, we can go on and work with more complicated system.__
+
+
 *   center the system around protein
      
     
         echo -e "2\n0\n" | gmx trjconv -f 3-run_${solute_name}.xtc -s 3-run_${solute_name}.tpr -o 3-run_${solute_name}_centered.xtc -center -pbc mol
     
-    If the simulation in a water box will finish without any problems, we can go on and work with more complicated system.
+   
      
 
 ### What if my simulation crashes?
