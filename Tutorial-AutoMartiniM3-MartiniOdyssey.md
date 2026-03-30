@@ -30,7 +30,7 @@ On the example of caffeine molecule
   <em>Figure 1 | Structure of the caffeine molecule</em>
 </p>  
 
- - Check the generated files using texteditor and VMD. What are the differences ?
+ - __Check the generated files using texteditor and VMD. What are the differences ?__
    
    
 ### Testing the model in a water box
