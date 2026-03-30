@@ -42,10 +42,14 @@ Run the commands with GROMACS in bash:
         
         gmx solvate -cp CAFF.gro -cs Water_CG.gro -o CAFF_CG_BW.gro -box 5 5 5
     
-*   append correct number of molecules in topology file of the system
-     
+## Creating the topology file
+
+*  Now, you need to create a topology file (.top). Use the file system_init.top provided.
+   Pay attention to the Martini path—it must point to the corresponding file.
+   If it does not, adjust the Martini path accordingly
     
         cp system_init.top system.top
+*  You 
         solvent_lines=$(grep $solvent_name initial_${solute_name}.gro | wc -l)
         solvent_molecules=$(expr $solvent_lines / $solvent_atoms )
         echo "$solute_name               1" >> system.top
