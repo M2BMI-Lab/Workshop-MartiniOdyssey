@@ -28,7 +28,11 @@ On the example of caffeine molecule
 </p>
 <p align="center">
   <em>Figure 1 | Structure of the caffeine molecule</em>
-</p>
+</p>  
+
+ - Check the generated files using texteditor and VMD. What are the differences ?
+   
+   
 ### Testing the model in a water box
  
 Run the commands with GROMACS in bash:
