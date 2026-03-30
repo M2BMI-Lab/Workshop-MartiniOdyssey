@@ -40,7 +40,7 @@ Run the commands with GROMACS in bash:
 
 *   insert one molecule parametrized with Auto Martini M3 into the water box
         
-        gmx solvate -cp CAFF.gro -cs Water_CG.gro -o init_W.gro -box 5 5 5
+        gmx solvate -cp CAFF.gro -cs Water_CG.gro -o CAFF_CG_BW.gro -box 5 5 5
     
 *   append correct number of molecules in topology file of the system
      
