@@ -60,7 +60,7 @@ You must also determine the number of water molecules present in your system. Th
    
 ## How to prepare and run minimization , equilibration and short production  
 
-# Minimization
+#### Minimization
 
     
        
