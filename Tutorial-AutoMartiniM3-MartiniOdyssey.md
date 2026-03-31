@@ -1,7 +1,7 @@
 Prerequisites: You need to have GROMACS installed on your machine!
 
 
-#### Installing Auto-MartiniM3 (without creating conda environment)
+# Installing Auto-MartiniM3 (without creating conda environment)
 
     git clone https://github.com/Martini-Force-Field-Initiative/Automartini_M3.git
     cd Automartini_M3
@@ -33,7 +33,7 @@ On the example of caffeine molecule
  - __Check the generated files using texteditor and VMD. What are the differences ?__
    
    
-### Testing the model in a water box
+# Testing the model in a water box
  
 Run the commands with GROMACS in bash:
  
@@ -96,7 +96,7 @@ Well, in that case we will have to play a little bit with molecule's topology by
 If instabilities still occur, we will have to go into nitty gritty model optimization. For bigger molecules, Auto-MartiniM3 creates multiple bonded parameters, like improper dihedrals, to hold molecule together, which can introduce instabilities with GROMACS. To improve our model, first thing we can try is removing all the dihedrals and try simulating. If a molecule is stable, you can start including dihedral angles one by one to identify which one was causing the problem and leave it behind. It's always better to have some dihedral angles defined. Another error in the topology could be the force values chosen by default in Auto-MartiniM3. You can try to optimize them by using the tools avaliable online, like bartender. For this, you will need a special input file, which can be generated automatically by Auto-MartiniM3 with -bartender flag.
  
 
-## Simulation with Adenosine 2 receptor embedded in POPC membrane
+# Simulation with Adenosine 2 receptor embedded in POPC membrane
  
 First, let's create a system with the protein embedded in the POPC membrane, with ligand (here it would be caffeine) in the solvent. We simulate without a priori, so that we could see if any interactions occur by themselves.
  
