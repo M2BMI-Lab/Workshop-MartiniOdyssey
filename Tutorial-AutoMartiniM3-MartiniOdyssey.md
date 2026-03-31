@@ -116,10 +116,10 @@ First, let's create a system with the protein embedded in the POPC membrane, wit
         CL_molecules=$(grep CL 3rfm_popc_${mol}.gro | wc -l)
 
 
-    echo "W              ${solvent_molecules}" >> 3rfm_popc_${mol}.top
-    echo "NA             ${NA_molecules}" >> 3rfm_popc_${mol}.top
-    echo "CL             ${CL_molecules}" >> 3rfm_popc_${mol}.top
-    echo "${mol}            10" >> 3rfm_popc_${mol}.top
+        echo "W              ${solvent_molecules}" >> 3rfm_popc_${mol}.top
+        echo "NA             ${NA_molecules}" >> 3rfm_popc_${mol}.top
+        echo "CL             ${CL_molecules}" >> 3rfm_popc_${mol}.top
+        echo "${mol}            10" >> 3rfm_popc_${mol}.top
 
 *   create index file for handling NPT and NVT for distinct groups of molecules in the system
      
