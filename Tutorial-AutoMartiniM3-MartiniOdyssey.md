@@ -64,27 +64,28 @@ You must also determine the number of water molecules present in your system. Th
 
     
        
-    gmx grompp -p system.top -c CAFF_CG_BW.gro -f martini_em.mdp  -o 1-min_CAFF_CG.tpr -po 1-min.mdp  -maxwarn 3
-    gmx mdrun -v -deffnm 1-min_${solute_name} -nt 8 >> mdrun.log 2>&1
+    gmx grompp -p system.top -c CAFF_CG_BW.gro -f martini_em.mdp -o 1-min_CAFF_CG.tpr -po 1-min.mdp  -maxwarn 3
+    gmx mdrun -v -deffnm 1-min_CAFF_CG -nt 8 >> mdrun.log 2>&1
 
 #### Equilibration
     
-    gmx grompp -p system.top -c 1-min_${solute_name}.gro   -f martini_eq.mdp  -o 2-eq_${solute_name}.tpr  -po 2-eq.mdp  -maxwarn 3
-    gmx mdrun -v -deffnm 2-eq_${solute_name}  -nt 8  >> mdrun.log 2>&1
+    gmx grompp -p system.top -c 1-min_CAFF_CG.gro -f martini_eq.mdp -o 2-eq_CAFF_CG.tpr  -po 2-eq.mdp  -maxwarn 3
+    gmx mdrun -v -deffnm 2-eq_CAFF_CG  -nt 8  >> mdrun.log 2>&1
 
 #### Production  
         
-        gmx grompp -p system.top -c 2-eq_${solute_name}.gro    -f martini_run.mdp -o 3-run_${solute_name}.tpr -po 3-run.mdp  -maxwarn 3
-        gmx mdrun -v -deffnm 3-run_${solute_name}  -nt 12
+        gmx grompp -p system.top -c 2-eq_CAFF_CG.gro -f martini_run.mdp -o 3-run_CAFF_CG.tpr -po 3-run.mdp  -maxwarn 3
+        gmx mdrun -v -deffnm 3-run_CAFF_CG -nt 12
 
  __If the simulation in a water box will finish without any problems, we can go on and work with more complicated system.__
 
+### Visualize your simulation of Caffein in water  
 
-*   center the system around protein
-     
+ - You could center the ligand in th midlle of the water box. To do so, you can use the following command:
     
-        echo -e "2\n0\n" | gmx trjconv -f 3-run_${solute_name}.xtc -s 3-run_${solute_name}.tpr -o 3-run_${solute_name}_centered.xtc -center -pbc mol
-    
+        gmx trjconv -f 3-run_CAFF_CG.xtc -s 3-run_CAFF_CG.tpr -o 3-run_CAFF_CG_centered.xtc -center -pbc mol
+
+    the flag ''-pbc mol'' puts the center of mass of molecules in the box,
    
      
 
