@@ -56,7 +56,7 @@ You must also determine the number of water molecules present in your system. Th
         water_mols=$(grep W  CAFF_CG_BW | wc -l)
         echo "CAFF               1" >> system.top
         echo "W               $water_mols" >> system.top
-        sed -i'' -e  s"/xxx/CAFF/"g system.top
+        sed -i -e  s"/xxx/CAFF/"g system.top
    
 ## How to prepare and run minimization , equilibration and short production  
 
