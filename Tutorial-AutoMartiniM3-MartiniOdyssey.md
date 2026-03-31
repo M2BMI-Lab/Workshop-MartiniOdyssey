@@ -106,17 +106,16 @@ First, let's create a system with the protein embedded in the POPC membrane, wit
     
         gmx insert-molecules -f 3rfm_popc.gro -ci ${mol}.gro -nmol 10 -try 500 -o 3rfm_popc_${mol}.gro -replace W
     
-    *   make necessary changes to the topology file, by recounting water beads and adding ligand molecules
-         
+*   make necessary changes to the topology file, by recounting water beads and adding ligand molecules  
 
-    cp 3rfm_popc.top 3rfm_popc_${mol}.top
-    sed -i s"/molname/${mol}/" 3rfm_popc_${mol}.top
-    
-    solvent_lines=$(grep W 3rfm_popc_${mol}.gro | wc -l)
-    solvent_molecules=$((solvent_lines - 1))
-    NA_molecules=$(grep NA 3rfm_popc_${mol}.gro | wc -l)
-    CL_molecules=$(grep CL 3rfm_popc_${mol}.gro | wc -l)
-    
+        cp 3rfm_popc.top 3rfm_popc_${mol}.top
+        sed  d -i s"/molname/${mol}/" 3rfm_popc_${mol}.top  
+        solvent_lines=$(grep W 3rfm_popc_${mol}.gro | wc -l)
+        solvent_molecules=$((solvent_lines - 1))
+        NA_molecules=$(grep NA 3rfm_popc_${mol}.gro | wc -l)
+        CL_molecules=$(grep CL 3rfm_popc_${mol}.gro | wc -l)
+
+
     echo "W              ${solvent_molecules}" >> 3rfm_popc_${mol}.top
     echo "NA             ${NA_molecules}" >> 3rfm_popc_${mol}.top
     echo "CL             ${CL_molecules}" >> 3rfm_popc_${mol}.top
