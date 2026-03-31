@@ -85,7 +85,7 @@ You must also determine the number of water molecules present in your system. Th
     
         gmx trjconv -f 3-run_CAFF_CG.xtc -s 3-run_CAFF_CG.tpr -o 3-run_CAFF_CG_centered.xtc -center -pbc mol
 
-    the flag ''-pbc mol'' puts the center of mass of molecules in the box,
+    the flag ```-pbc mol``` puts the center of mass of molecules in the box,
    
      
 
