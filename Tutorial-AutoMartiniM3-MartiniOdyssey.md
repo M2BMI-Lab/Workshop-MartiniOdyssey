@@ -154,6 +154,7 @@ echo "${mol}            10" >> 3rfm_popc_${mol}.top
                             echo "1 | r TW"
                             echo "q"
                         } > index-selection.txt
+```
     
     gmx make_ndx -f 3rfm_popc_${mol}.gro -o 3rfm_popc_${mol}.ndx < index-selection.txt
 
