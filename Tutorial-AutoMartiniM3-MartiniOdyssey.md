@@ -144,12 +144,12 @@ echo "${mol}            10" >> 3rfm_popc_${mol}.top
 
 *   create index file for handling NPT and NVT for distinct groups of molecules in the system
      
-
-    {
-                            echo "del 2-18"
-                            echo "r W | r ION | r ${mol:0:4}"
-                            echo "name 2 Solvent"
-                            echo "r POPC"
+```bash
+{
+    echo "del 2-18"  
+    echo "r W | r ION | r ${mol:0:4}"  
+    echo "name 2 Solvent"
+    echo "r POPC"
                             echo "name 3 Bilayer"
                             echo "1 | r TW"
                             echo "q"
