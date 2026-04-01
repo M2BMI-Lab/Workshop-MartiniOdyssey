@@ -70,19 +70,19 @@ sed -i -e  s"/xxx/CAFF/"g system.top
 
 ## All stages from energy minimization through equilibration to production
 
-#### Minimization
+*  Minimization
 ```bash     
 gmx grompp -p system.top -c CAFF_CG_BW.gro -f martini_em.mdp -o 1-min_CAFF_CG.tpr -po 1-min.mdp  -maxwarn 3
 gmx mdrun -v -deffnm 1-min_CAFF_CG -nt 8 >> mdrun.log 2>&1
 ```
 
-#### Equilibration
+__*  Equilibration (NVT)__  
 ```bash
 gmx grompp -p system.top -c 1-min_CAFF_CG.gro -f martini_eq.mdp -o 2-eq_CAFF_CG.tpr  -po 2-eq.mdp  -maxwarn 3
 gmx mdrun -v -deffnm 2-eq_CAFF_CG  -nt 8  >> mdrun.log 2>&1
 ```
 
-#### Production  
+*  __Production (NPT)__
 ```bash     
 gmx grompp -p system.top -c 2-eq_CAFF_CG.gro -f martini_run.mdp -o 3-run_CAFF_CG.tpr -po 3-run.mdp  -maxwarn 3
 gmx mdrun -v -deffnm 3-run_CAFF_CG -nt 12
