@@ -122,7 +122,7 @@ gmx insert-molecules -f 3rfm_popc.gro -ci CAFF.gro -nmol 10 -try 500 -o 3rfm_pop
 </p>
 <p align="center">
   <em>Figure 2 | Visualisation of caffeine molecules with A2A receptor</em>
-</p> ****
+</p>
     
 
 *   Make necessary changes to the topology file, by recounting water beads and adding ligand molecules  
