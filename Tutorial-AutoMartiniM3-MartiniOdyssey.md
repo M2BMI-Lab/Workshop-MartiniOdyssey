@@ -118,10 +118,10 @@ We simulate without a priori, so that we could see if any interactions occur by 
 gmx insert-molecules -f 3rfm_popc.gro -ci CAFF.gro -nmol 10 -try 500 -o 3rfm_popc_CAFF.gro -replace W
 ```
 <p align="center">
-  <img src="./image/Volmaps_CaFF.jpg" alt="Caffeine in A2A Protein" width="220">  
+  <img src="./image/Volmaps_CaFF.jpg" alt="Caffeine in A2A Protein" width="320">  
 </p>
 <p align="center">
-  <em>Figure 2 | Visualisation caffeine molecules with A2A receptor</em>
+  <em>Figure 2 | Visualisation of caffeine molecules with A2A receptor</em>
 </p> ****
     
 
