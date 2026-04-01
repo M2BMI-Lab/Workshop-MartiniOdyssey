@@ -103,17 +103,20 @@ First, let's create a system with the protein embedded in the POPC membrane, wit
 
 *   add 10 molecules of ligand to already prepared protein-membrane-solvent system
      
-    
+```bash
         gmx insert-molecules -f 3rfm_popc.gro -ci CAFF.gro -nmol 10 -try 500 -o 3rfm_popc_CAFF.gro -replace W
-    
+```    
 *   make necessary changes to the topology file, by recounting water beads and adding ligand molecules  
 
+```bash
         cp 3rfm_popc.top 3rfm_popc_CAFF.top
-
+```
 *   In the new topology just create  you have change the string ```molname``` by the name of your molecule.
     In this example, replace `molname` with `CAFF`
 
+```bash
        sed  d -i s"/molname/CAFF/" 3rfm_popc_CAFF.top
+```
     
 *   Then, determine the number of sodium ions, chloride ions, and water molecules in the newly created structure file, either manually or by using the following small script:
 ```bash
