@@ -20,7 +20,7 @@ We will need a unique SMILES string of each molecule of interest, like caffeine 
 
 On the example of caffeine molecule, the smile is `CN1C=NC2=C1C(=O)N(C(=O)N2C)C`  
 
-Thers is two way to generate CG model of small ligand with AutoMartini3:
+There are two approaches to generate a coarse-grained (CG) model of a small ligand using AutoMartini3:
 
  - From a SMILES code:  
    
