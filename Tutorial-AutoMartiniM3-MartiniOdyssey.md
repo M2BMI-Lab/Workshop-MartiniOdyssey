@@ -115,19 +115,18 @@ First, let's create a system with the protein embedded in the POPC membrane, wit
 
        sed  d -i s"/molname/CAFF/" 3rfm_popc_CAFF.top
     
-*   Then, determine the number of sodium ions, chloride ions, and water molecules in the newly created structure file, either manually or by using the following small script:       
+*   Then, determine the number of sodium ions, chloride ions, and water molecules in the newly created structure file, either manually or by using the following small script:
+```bash
+solvent_lines=$(grep W 3rfm_popc_${mol}.gro | wc -l)
+solvent_molecules=$((solvent_lines - 1))
+NA_molecules=$(grep NA 3rfm_popc_${mol}.gro | wc -l)
+CL_molecules=$(grep CL 3rfm_popc_${mol}.gro | wc -l)
 
-        ```bash
-        solvent_lines=$(grep W 3rfm_popc_${mol}.gro | wc -l)
-        solvent_molecules=$((solvent_lines - 1))
-        NA_molecules=$(grep NA 3rfm_popc_${mol}.gro | wc -l)
-        CL_molecules=$(grep CL 3rfm_popc_${mol}.gro | wc -l)
-
-        echo "W              ${solvent_molecules}" >> 3rfm_popc_${mol}.top
-        echo "NA             ${NA_molecules}" >> 3rfm_popc_${mol}.top
-        echo "CL             ${CL_molecules}" >> 3rfm_popc_${mol}.top
-        echo "${mol}            10" >> 3rfm_popc_${mol}.top
-        ```
+echo "W              ${solvent_molecules}" >> 3rfm_popc_${mol}.top
+echo "NA             ${NA_molecules}" >> 3rfm_popc_${mol}.top
+echo "CL             ${CL_molecules}" >> 3rfm_popc_${mol}.top
+echo "${mol}            10" >> 3rfm_popc_${mol}.top
+```
 
 *   create index file for handling NPT and NVT for distinct groups of molecules in the system
      
