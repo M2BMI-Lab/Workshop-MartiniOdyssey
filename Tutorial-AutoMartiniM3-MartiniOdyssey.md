@@ -204,8 +204,8 @@ gmx mdrun -deffnm 3rfm_popc_${mol}_md -ntmpi 8  -v -cpi 3rfm_popc_CAFF_md.cpt -n
 <!-- *   create pdb file for pretty visualisation of bonds
   
  
-    echo 0 | gmx trjconv -f 3rfm_popc_${mol}_md.part0001.gro -s 3rfm_popc_${mol}_md.tpr -conect -o 3rfm_popc_CAFF_md-conect.pdb -pbc whole
-    sed -i '/ENDMDL/d'  3rfm_popc_${mol}_md-conect.pdb
+    echo 0 | gmx trjconv -f 3rfm_popc_CAFF_md.part0001.gro -s 3rfm_popc_${mol}_md.tpr -conect -o 3rfm_popc_CAFF_md-conect.pdb -pbc whole
+    sed -i '/ENDMDL/d'  3rfm_popc_CAFF_md-conect.pdb
 -->
 
 # Visualisation of protein+ligand trajectory
@@ -215,7 +215,7 @@ gmx mdrun -deffnm 3rfm_popc_${mol}_md -ntmpi 8  -v -cpi 3rfm_popc_CAFF_md.cpt -n
  
 Visualize the system with VMD by loading the trajectory
 ```bash
-    vmd  3rfm_popc_${mol}_md-conect.pdb 3rfm_popc${mol}_md_centered.xtc 
+    vmd  3rfm_popc_CAFF_md-conect.pdb 3rfm_popc_CAFF_md_centered.xtc 
 ```
 
 ### Commands in VMD
