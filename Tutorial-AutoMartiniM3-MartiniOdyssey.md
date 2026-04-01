@@ -39,25 +39,27 @@ Run the commands with GROMACS in bash:
  
 
 *   insert one molecule parametrized with Auto Martini M3 into the water box
-        
-        gmx solvate -cp CAFF.gro -cs Water_CG.gro -o CAFF_CG_BW.gro -box 5 5 5
-    
+```bash 
+gmx solvate -cp CAFF.gro -cs Water_CG.gro -o CAFF_CG_BW.gro -box 5 5 5
+```    
 ## Creating the topology file
 
 *  Now, you need to create a topology file (.top). Use the file system_init.top provided.
    Pay attention to the Martini path—it must point to the corresponding file.
    If it does not, adjust the Martini path accordingly
-    
-        cp system_init.top system.top
+```bash 
+cp system_init.top system.top
+```
    
 *  To generate a correct topology file, include the ITP file previously created with Auto Martini M3.
 You must also determine the number of water molecules present in your system. The following command lines can be used:
+```bash
+water_mols=$(grep W  CAFF_CG_BW | wc -l)
+echo "CAFF               1" >> system.top
+echo "W               $water_mols" >> system.top
+sed -i -e  s"/xxx/CAFF/"g system.top
+```
 
-        water_mols=$(grep W  CAFF_CG_BW | wc -l)
-        echo "CAFF               1" >> system.top
-        echo "W               $water_mols" >> system.top
-        sed -i -e  s"/xxx/CAFF/"g system.top
-   
 ## How to prepare and run minimization , equilibration and short production  
 
 #### Minimization
@@ -68,23 +70,24 @@ You must also determine the number of water molecules present in your system. Th
     gmx mdrun -v -deffnm 1-min_CAFF_CG -nt 8 >> mdrun.log 2>&1
 
 #### Equilibration
-    
-    gmx grompp -p system.top -c 1-min_CAFF_CG.gro -f martini_eq.mdp -o 2-eq_CAFF_CG.tpr  -po 2-eq.mdp  -maxwarn 3
-    gmx mdrun -v -deffnm 2-eq_CAFF_CG  -nt 8  >> mdrun.log 2>&1
+```bash
+gmx grompp -p system.top -c 1-min_CAFF_CG.gro -f martini_eq.mdp -o 2-eq_CAFF_CG.tpr  -po 2-eq.mdp  -maxwarn 3
+gmx mdrun -v -deffnm 2-eq_CAFF_CG  -nt 8  >> mdrun.log 2>&1
+```
 
 #### Production  
-        
-        gmx grompp -p system.top -c 2-eq_CAFF_CG.gro -f martini_run.mdp -o 3-run_CAFF_CG.tpr -po 3-run.mdp  -maxwarn 3
-        gmx mdrun -v -deffnm 3-run_CAFF_CG -nt 12
-
+```bash     
+gmx grompp -p system.top -c 2-eq_CAFF_CG.gro -f martini_run.mdp -o 3-run_CAFF_CG.tpr -po 3-run.mdp  -maxwarn 3
+gmx mdrun -v -deffnm 3-run_CAFF_CG -nt 12
+```
  __If the simulation in a water box will finish without any problems, we can go on and work with more complicated system.__
 
 ### Visualize your simulation of Caffein in water  
 
  - You could center the ligand in th midlle of the water box. To do so, you can use the following command:
-    
-        gmx trjconv -f 3-run_CAFF_CG.xtc -s 3-run_CAFF_CG.tpr -o 3-run_CAFF_CG_centered.xtc -center -pbc mol
-
+```bash    
+gmx trjconv -f 3-run_CAFF_CG.xtc -s 3-run_CAFF_CG.tpr -o 3-run_CAFF_CG_centered.xtc -center -pbc mol
+```
     the flag ```-pbc mol``` puts the center of mass of molecules in the box,
    
      
@@ -104,12 +107,12 @@ First, let's create a system with the protein embedded in the POPC membrane, wit
 *   add 10 molecules of ligand to already prepared protein-membrane-solvent system
      
 ```bash
-        gmx insert-molecules -f 3rfm_popc.gro -ci CAFF.gro -nmol 10 -try 500 -o 3rfm_popc_CAFF.gro -replace W
+gmx insert-molecules -f 3rfm_popc.gro -ci CAFF.gro -nmol 10 -try 500 -o 3rfm_popc_CAFF.gro -replace W
 ```    
 *   make necessary changes to the topology file, by recounting water beads and adding ligand molecules  
 
 ```bash
-        cp 3rfm_popc.top 3rfm_popc_CAFF.top
+cp 3rfm_popc.top 3rfm_popc_CAFF.top
 ```
 *   In the new topology just create  you have change the string ```molname``` by the name of your molecule.
     In this example, replace `molname` with `CAFF`
