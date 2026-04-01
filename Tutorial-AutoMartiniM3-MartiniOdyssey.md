@@ -68,7 +68,7 @@ echo "W               $water_mols" >> system.top
 sed -i -e  s"/xxx/CAFF/"g system.top
 ```
 
-## All steps to minimisation to short production  
+## All stages from energy minimization through equilibration to production
 
 #### Minimization
 ```bash     
