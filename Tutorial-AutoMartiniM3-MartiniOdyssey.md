@@ -107,7 +107,7 @@ If instabilities still occur, we will have to go into nitty gritty model optimiz
  
 
 # Simulation with Adenosine 2 receptor embedded in POPC membrane
- 
+
 First, let's create a system with the protein embedded in the POPC membrane, with ligand (here it would be caffeine) in the solvent.  
 We simulate without a priori, so that we could see if any interactions occur by themselves.
  
@@ -116,7 +116,15 @@ We simulate without a priori, so that we could see if any interactions occur by 
      
 ```bash
 gmx insert-molecules -f 3rfm_popc.gro -ci CAFF.gro -nmol 10 -try 500 -o 3rfm_popc_CAFF.gro -replace W
-```    
+```
+<p align="center">
+  <img src="./image/Volmaps_CaFF.jpg" alt="Caffeine in A2A Protein" width="220">  
+</p>
+<p align="center">
+  <em>Figure 2 | Visualisation caffeine molecules with A2A receptor</em>
+</p> ****
+    
+
 *   Make necessary changes to the topology file, by recounting water beads and adding ligand molecules  
 
 ```bash
