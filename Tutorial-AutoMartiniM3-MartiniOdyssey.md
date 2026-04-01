@@ -199,15 +199,16 @@ gmx mdrun -deffnm 3rfm_popc_${mol}_md -ntmpi 8  -v -cpi 3rfm_popc_CAFF_md.cpt -n
     echo 0 | gmx trjconv -f 3rfm_popc_${mol}_md.part0001.gro -s 3rfm_popc_${mol}_md.tpr -conect -o 3rfm_popc_CAFF_md-conect.pdb -pbc whole
     sed -i '/ENDMDL/d'  3rfm_popc_${mol}_md-conect.pdb
 -->
-## Analyze results
- 
 
+# Visualisation of protein+ligand trajectory
+
+ 
 ## in VMD
  
 Visualize the system with VMD by loading the trajectory
- 
-
+```bash
     vmd  3rfm_popc_${mol}_md-conect.pdb 3rfm_popc${mol}_md_centered.xtc 
+```
 
 ### Commands in VMD
  
@@ -215,6 +216,8 @@ focus view on protein's backbone
  
 
     Extensions -> Analysis -> RMSD Trajectory Tool type "type BB" and click ALIGN on Top reference mol (by default)
+
+
 
 Display settings for better view
  
