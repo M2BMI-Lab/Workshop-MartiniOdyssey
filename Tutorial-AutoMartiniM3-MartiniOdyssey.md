@@ -147,51 +147,50 @@ echo "${mol}            10" >> 3rfm_popc_${mol}.top
 ```bash
 {
     echo "del 2-18"  
-    echo "r W | r ION | r ${mol:0:4}"  
+    echo "r W | r ION | r CAFF"  
     echo "name 2 Solvent"
     echo "r POPC"
-                            echo "name 3 Bilayer"
-                            echo "1 | r TW"
-                            echo "q"
-                        } > index-selection.txt
+    echo "name 3 Bilayer"
+    echo "1 | r TW"
+    echo "q"
+    } > index-selection.txt
 ```
-    
-    gmx make_ndx -f 3rfm_popc_${mol}.gro -o 3rfm_popc_${mol}.ndx < index-selection.txt
+```bash    
+    gmx make_ndx -f 3rfm_popc_CAFF.gro -o 3rfm_popc_CAFF.ndx < index-selection.txt
+```
 
 With system ready, verify if you have all needed input files : topology files, mdp files with GROMACS parameters, etc.
  
 Launch minimization, 4 steps of equilibration where at each step we increase the size of time step, and production of 2 microseconds.
- 
+```bash  
+gmx grompp -f min-A2A-lig.mdp -c 3rfm_popc_CAFF.gro -r 3rfm_popc_CAFF.gro -p 3rfm_popc_CAFF.top -n 3rfm_popc_CAFF.ndx -o 3rfm_popc_CAFF_min.tpr -maxwarn 2
+gmx mdrun -deffnm 3rfm_popc_CAFF_min -ntmpi 8  -v
+```
+4 steps of equilibration where at each step we increase the size of time step
+```bash      
+## equilibration 1
+gmx grompp -f eq0-A2A-lig.mdp -c 3rfm_popc_CAFF_min.gro -r 3rfm_popc_CAFF.gro -p 3rfm_popc_CAFF.top -n 3rfm_popc_CAFF.ndx -o 3rfm_popc_CAFF_eq0.tpr -maxwarn 3
+gmx mdrun -deffnm 3rfm_popc_CAFF_eq0 -ntmpi 8  -v
+## equilibration 2
+gmx grompp -f eq1-A2A-lig.mdp -c 3rfm_popc_CAFF_eq0.gro -r 3rfm_popc_CAFF.gro -p 3rfm_popc_CAFF.top -n 3rfm_popc_CAFF.ndx -o 3rfm_popc_CAFF_eq1.tpr -maxwarn 3
+gmx mdrun -deffnm 3rfm_popc_CAFF_eq1 -ntmpi 8  -v
+## equilibration 3    
+gmx grompp -f eq2-A2A-lig.mdp -c 3rfm_popc_CAFF_eq1.gro -r 3rfm_popc_CAFF.gro -p 3rfm_popc_CAFF.top -n 3rfm_popc_CAFF.ndx -o 3rfm_popc_CAFF_eq2.tpr -maxwarn 3
+gmx mdrun -deffnm 3rfm_popc_CAFF_eq2 -ntmpi 8  -v
+## equilibration 4     
+gmx grompp -f eq3-A2A-lig.mdp -c 3rfm_popc_CAFF_eq2.gro -r 3rfm_popc_CAFF.gro -p 3rfm_popc_CAFF.top -n 3rfm_popc_CAFF.ndx -o 3rfm_popc_CAFF_eq3.tpr -maxwarn 3 
+gmx mdrun -deffnm 3rfm_popc_CAFF_eq3 -ntmpi 8  -v
+```
+## production of 2 microseconds
+```bash  
+gmx grompp -f md-A2A-lig.mdp -c 3rfm_popc_CAFF_eq3.gro -r 3rfm_popc_CAFF.gro -p 3rfm_popc_CAFF.top -n 3rfm_popc_CAFF.ndx -o 3rfm_popc_CAFF_md.tpr -maxwarn 3
+gmx mdrun -deffnm 3rfm_popc_${mol}_md -ntmpi 8  -v -cpi 3rfm_popc_CAFF_md.cpt -noappend
+```
 
-    gmx grompp -f min-A2A-lig.mdp -c 3rfm_popc_${mol}.gro -r 3rfm_popc_${mol}.gro -p 3rfm_popc_${mol}.top -n 3rfm_popc_${mol}.ndx -o 3rfm_popc_${mol}_min.tpr -maxwarn 2
-    
-    gmx mdrun -deffnm 3rfm_popc_${mol}_min -ntmpi 8  -v
-    
-    gmx grompp -f eq0-A2A-lig.mdp -c 3rfm_popc_${mol}_min.gro -r 3rfm_popc_${mol}.gro -p 3rfm_popc_${mol}.top -n 3rfm_popc_${mol}.ndx -o 3rfm_popc_${mol}_eq0.tpr -maxwarn 3
-    
-    gmx mdrun -deffnm 3rfm_popc_${mol}_eq0 -ntmpi 8  -v
-    
-    gmx grompp -f eq1-A2A-lig.mdp -c 3rfm_popc_${mol}_eq0.gro -r 3rfm_popc_${mol}.gro -p 3rfm_popc_${mol}.top -n 3rfm_popc_${mol}.ndx -o 3rfm_popc_${mol}_eq1.tpr -maxwarn 3
-    
-    gmx mdrun -deffnm 3rfm_popc_${mol}_eq1 -ntmpi 8  -v
-    
-    gmx grompp -f eq2-A2A-lig.mdp -c 3rfm_popc_${mol}_eq1.gro -r 3rfm_popc_${mol}.gro -p 3rfm_popc_${mol}.top -n 3rfm_popc_${mol}.ndx -o 3rfm_popc_${mol}_eq2.tpr -maxwarn 3
-    
-    gmx mdrun -deffnm 3rfm_popc_${mol}_eq2 -ntmpi 8  -v
-    
-    gmx grompp -f eq3-A2A-lig.mdp -c 3rfm_popc_${mol}_eq2.gro -r 3rfm_popc_${mol}.gro -p 3rfm_popc_${mol}.top -n 3rfm_popc_${mol}.ndx -o 3rfm_popc_${mol}_eq3.tpr -maxwarn 3
-    
-    gmx mdrun -deffnm 3rfm_popc_${mol}_eq3 -ntmpi 8  -v
-    
-    gmx grompp -f md-A2A-lig.mdp -c 3rfm_popc_${mol}_eq3.gro -r 3rfm_popc_${mol}.gro -p 3rfm_popc_${mol}.top -n 3rfm_popc_${mol}.ndx -o 3rfm_popc_${mol}_md.tpr -maxwarn 3
-    
-    gmx mdrun -deffnm 3rfm_popc_${mol}_md -ntmpi 8  -v -cpi 3rfm_popc_${mol}_md.cpt -noappend
-
-*   center the system around protein
-     
-
-    echo -e "1\n0\n" |gmx trjconv -s 3rfm_popc_${mol}_md.tpr -f 3rfm_popc_${mol}_md.part0001.xtc -o 3rfm_popc_${mol}_md_centered.xtc -pbc mol -center
-
+## center the system around protein  
+```bash
+    gmx trjconv -s 3rfm_popc_CAFF_md.tpr -f 3rfm_popc_${mol}_md.part0001.xtc -o 3rfm_popc_${mol}_md_centered.xtc -pbc mol -center
+```
 *   create pdb file for pretty visualisation of bonds
      
 
