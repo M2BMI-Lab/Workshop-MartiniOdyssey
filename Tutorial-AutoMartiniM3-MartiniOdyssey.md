@@ -190,14 +190,15 @@ gmx mdrun -deffnm 3rfm_popc_${mol}_md -ntmpi 8  -v -cpi 3rfm_popc_CAFF_md.cpt -n
 
 ## center the system around protein  
 ```bash
-    gmx trjconv -s 3rfm_popc_CAFF_md.tpr -f 3rfm_popc_${mol}_md.part0001.xtc -o 3rfm_popc_${mol}_md_centered.xtc -pbc mol -center
+    gmx trjconv -s 3rfm_popc_CAFF_md.tpr -f 3rfm_popc_CAFF_md.part0001.xtc -o 3rfm_popc_CAFF_md_centered.xtc -pbc mol -center
 ```
-*   create pdb file for pretty visualisation of bonds
-     
 
-    echo 0 | gmx trjconv -f 3rfm_popc_${mol}_md.part0001.gro -s 3rfm_popc_${mol}_md.tpr -conect -o 3rfm_popc_${mol}_md-conect.pdb -pbc whole
-    
-    sed -i '/ENDMDL/d'  3rfm_popc_${mol}_md-conect.pdb
+<> *   create pdb file for pretty visualisation of bonds
+<>    
+<> 
+<>     echo 0 | gmx trjconv -f 3rfm_popc_${mol}_md.part0001.gro -s 3rfm_popc_${mol}_md.tpr -conect -o 3rfm_popc_CAFF_md-conect.pdb -pbc whole
+<>     
+<>  sed -i '/ENDMDL/d'  3rfm_popc_${mol}_md-conect.pdb
 
 # Analyze results
  
