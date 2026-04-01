@@ -59,7 +59,7 @@ gmx solvate -cp CAFF.gro -cs Water_CG.gro -o CAFF_CG_BW.gro -box 5 5 5
 cp system_init.top system.top
 ```
    
-*  To generate a correct topology file, include the ITP file previously created with Auto Martini M3.
+*  To generate a correct topology file, include the `itp` file previously created with Auto Martini M3.
 You must also determine the number of water molecules present in your system. The following command lines can be used:
 ```bash
 water_mols=$(grep W  CAFF_CG_BW | wc -l)
