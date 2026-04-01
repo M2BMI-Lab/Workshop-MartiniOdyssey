@@ -71,11 +71,10 @@ sed -i -e  s"/xxx/CAFF/"g system.top
 ## How to prepare and run minimization , equilibration and short production  
 
 #### Minimization
-
-    
-       
-    gmx grompp -p system.top -c CAFF_CG_BW.gro -f martini_em.mdp -o 1-min_CAFF_CG.tpr -po 1-min.mdp  -maxwarn 3
-    gmx mdrun -v -deffnm 1-min_CAFF_CG -nt 8 >> mdrun.log 2>&1
+```bash     
+gmx grompp -p system.top -c CAFF_CG_BW.gro -f martini_em.mdp -o 1-min_CAFF_CG.tpr -po 1-min.mdp  -maxwarn 3
+gmx mdrun -v -deffnm 1-min_CAFF_CG -nt 8 >> mdrun.log 2>&1
+```
 
 #### Equilibration
 ```bash
