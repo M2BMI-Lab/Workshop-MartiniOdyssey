@@ -162,11 +162,12 @@ echo "${mol}            10" >> 3rfm_popc_${mol}.top
 With system ready, verify if you have all needed input files : topology files, mdp files with GROMACS parameters, etc.
  
 Launch minimization, 4 steps of equilibration where at each step we increase the size of time step, and production of 2 microseconds.
+* __Minmisation__
 ```bash  
 gmx grompp -f min-A2A-lig.mdp -c 3rfm_popc_CAFF.gro -r 3rfm_popc_CAFF.gro -p 3rfm_popc_CAFF.top -n 3rfm_popc_CAFF.ndx -o 3rfm_popc_CAFF_min.tpr -maxwarn 2
 gmx mdrun -deffnm 3rfm_popc_CAFF_min -ntmpi 8  -v
 ```
-4 steps of equilibration where at each step we increase the size of time step
+* __4 steps of equilibration where at each step we increase the size of time step__
 ```bash      
 ## equilibration 1
 gmx grompp -f eq0-A2A-lig.mdp -c 3rfm_popc_CAFF_min.gro -r 3rfm_popc_CAFF.gro -p 3rfm_popc_CAFF.top -n 3rfm_popc_CAFF.ndx -o 3rfm_popc_CAFF_eq0.tpr -maxwarn 3
@@ -181,7 +182,7 @@ gmx mdrun -deffnm 3rfm_popc_CAFF_eq2 -ntmpi 8  -v
 gmx grompp -f eq3-A2A-lig.mdp -c 3rfm_popc_CAFF_eq2.gro -r 3rfm_popc_CAFF.gro -p 3rfm_popc_CAFF.top -n 3rfm_popc_CAFF.ndx -o 3rfm_popc_CAFF_eq3.tpr -maxwarn 3 
 gmx mdrun -deffnm 3rfm_popc_CAFF_eq3 -ntmpi 8  -v
 ```
-## production of 2 microseconds
+* __production of 2 microseconds__
 ```bash  
 gmx grompp -f md-A2A-lig.mdp -c 3rfm_popc_CAFF_eq3.gro -r 3rfm_popc_CAFF.gro -p 3rfm_popc_CAFF.top -n 3rfm_popc_CAFF.ndx -o 3rfm_popc_CAFF_md.tpr -maxwarn 3
 gmx mdrun -deffnm 3rfm_popc_${mol}_md -ntmpi 8  -v -cpi 3rfm_popc_CAFF_md.cpt -noappend
