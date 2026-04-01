@@ -68,7 +68,7 @@ echo "W               $water_mols" >> system.top
 sed -i -e  s"/xxx/CAFF/"g system.top
 ```
 
-## How to prepare and run minimization , equilibration and short production  
+## All steps to minimisation to short production  
 
 #### Minimization
 ```bash     
