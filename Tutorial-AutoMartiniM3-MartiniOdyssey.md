@@ -10,10 +10,17 @@ Prerequisites: You need to have GROMACS installed on your machine!
     
 To use AutomartiniM3
     python -m auto_martiniM3 [mode] [options]
+
+
     
 ## Creating Coarse-Grained model with Auto-MartiniM3
- 
-On the example of caffeine molecule
+
+We will need a unique SMILES string of each molecule of interest, like caffeine (1,3,7-trimethyl-1H-purine-2,6(3H,7H)-dione). To obtain the SMILE string, from your pdb or direct drawing using [OpenBabel server](https://www.cheminfo.org/Chemistry/Cheminformatics/FormatConverter/index.html).
+
+
+On the example of caffeine molecule the smile is `CN1C=NC2=C1C(=O)N(C(=O)N2C)C`  
+Thers is two way to generate CG model of small ligand with AutoMartini3:
+
  - From a SMILES code:  
    
        python -m auto_martiniM3 --smi "CN1C=NC2=C1C(=O)N(C(=O)N2C)C" --mol CAFF --aa CAFF_aa.gro
