@@ -104,22 +104,30 @@ First, let's create a system with the protein embedded in the POPC membrane, wit
 *   add 10 molecules of ligand to already prepared protein-membrane-solvent system
      
     
-        gmx insert-molecules -f 3rfm_popc.gro -ci ${mol}.gro -nmol 10 -try 500 -o 3rfm_popc_${mol}.gro -replace W
+        gmx insert-molecules -f 3rfm_popc.gro -ci CAFF.gro -nmol 10 -try 500 -o 3rfm_popc_CAFF.gro -replace W
     
 *   make necessary changes to the topology file, by recounting water beads and adding ligand molecules  
 
-        cp 3rfm_popc.top 3rfm_popc_${mol}.top
-        sed  d -i s"/molname/${mol}/" 3rfm_popc_${mol}.top  
+        cp 3rfm_popc.top 3rfm_popc_CAFF.top
+
+*   In the new topology just create  you have change the string ```molname``` by the name of your molecule.
+    In this example, replace `molname` with `CAFF`
+
+       sed  d -i s"/molname/CAFF/" 3rfm_popc_CAFF.top
+    
+*   Then, determine the number of sodium ions, chloride ions, and water molecules in the newly created structure file, either manually or by using the following small script:       
+
+        ```bash
         solvent_lines=$(grep W 3rfm_popc_${mol}.gro | wc -l)
         solvent_molecules=$((solvent_lines - 1))
         NA_molecules=$(grep NA 3rfm_popc_${mol}.gro | wc -l)
         CL_molecules=$(grep CL 3rfm_popc_${mol}.gro | wc -l)
 
-
         echo "W              ${solvent_molecules}" >> 3rfm_popc_${mol}.top
         echo "NA             ${NA_molecules}" >> 3rfm_popc_${mol}.top
         echo "CL             ${CL_molecules}" >> 3rfm_popc_${mol}.top
         echo "${mol}            10" >> 3rfm_popc_${mol}.top
+        ```
 
 *   create index file for handling NPT and NVT for distinct groups of molecules in the system
      
