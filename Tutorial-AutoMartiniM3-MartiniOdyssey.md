@@ -18,7 +18,8 @@ To use AutomartiniM3
 We will need a unique SMILES string of each molecule of interest, like caffeine (1,3,7-trimethyl-1H-purine-2,6(3H,7H)-dione). To obtain the SMILE string, from your pdb or direct drawing using [OpenBabel server](https://www.cheminfo.org/Chemistry/Cheminformatics/FormatConverter/index.html).
 
 
-On the example of caffeine molecule the smile is `CN1C=NC2=C1C(=O)N(C(=O)N2C)C`  
+On the example of caffeine molecule, the smile is `CN1C=NC2=C1C(=O)N(C(=O)N2C)C`  
+
 Thers is two way to generate CG model of small ligand with AutoMartini3:
 
  - From a SMILES code:  
