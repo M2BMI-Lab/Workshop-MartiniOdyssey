@@ -115,7 +115,7 @@ First, let's create a system with the protein embedded in the POPC membrane, wit
     In this example, replace `molname` with `CAFF`
 
 ```bash
-       sed  d -i s"/molname/CAFF/" 3rfm_popc_CAFF.top
+sed  d -i s"/molname/CAFF/" 3rfm_popc_CAFF.top
 ```
     
 *   Then, determine the number of sodium ions, chloride ions, and water molecules in the newly created structure file, either manually or by using the following small script:
