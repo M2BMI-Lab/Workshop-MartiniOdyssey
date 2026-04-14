@@ -44,7 +44,7 @@ There are two approaches to generate a coarse-grained (CG) model of a small liga
 First, let's create a system with the protein embedded in the POPC membrane, with ligand (here it would be caffeine) in the solvent.  
 We simulate without a priori, so that we could see if any interactions occur by themselves.
 
-*  Go to repository with all needed files (remeber to take with you the topology and coordinates files of the liand)
+*  Go to repository with all needed files (remember to move the topology and coordinates files of the liand with you)
 ```bash
 cd Tutorial-Simulation-with-GPCR-datafiles/
 mv ../CAFF* ./
@@ -56,10 +56,10 @@ mv ../CAFF* ./
 gmx insert-molecules -f 3rfm_popc.gro -ci CAFF.gro -nmol 10 -try 500 -o 3rfm_popc_CAFF.gro -replace W
 ```
 <p align="center">
-  <img src="./image/Volmaps_CaFF.jpg" alt="Caffeine in A2A Protein" width="320">  
+  <img src="./image/Volmaps_CaFF.jpg" alt="Caffeine in A2A Protein" width="640">  
 </p>
 <p align="center">
-  <em>Figure 2 | Visualisation of caffeine molecules with A2A receptor</em>
+  <em>Figure 2 | Visualisation of caffeine molecules with A2A receptor in POPC membrane</em>
 </p>
     
 
@@ -146,10 +146,7 @@ gmx mdrun -deffnm 3rfm_popc_${mol}_md -ntmpi 8  -v -cpi 3rfm_popc_CAFF_md.cpt -n
     sed -i '/ENDMDL/d'  3rfm_popc_CAFF_md-conect.pdb
 -->
 
-# Visualisation of protein+ligand trajectory
-
- 
-## in VMD
+# Visualisation of the simulation with VMD
  
 Visualize the system with VMD by loading the trajectory
 ```bash

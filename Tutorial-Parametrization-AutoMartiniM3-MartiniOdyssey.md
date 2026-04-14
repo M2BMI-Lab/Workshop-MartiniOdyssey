@@ -101,7 +101,7 @@ gmx trjconv -f 3-run_CAFF_CG.xtc -s 3-run_CAFF_CG.tpr -o 3-run_CAFF_CG_centered.
 
 ### What if my simulation crashes?
  
-If your simulation crashes, you will need to adjust the molecule's topology, either manually or by using open-source tools from the Martini Universe, such as Bartender. During this workshop, we will focus on optimising molecules by hand.
+If your simulation crashes, you will need to adjust the molecule's topology, either manually or by using open-source tools from the [Martini Universe](https://cgmartini.nl/docs/downloads/tools/topology-structure-generation.html), such as [Bartender](https://github.com/Martini-Force-Field-Initiative/Bartender). During this workshop, we will focus on optimising molecules by hand.
 #### Why small molecules are tricky
 Small molecules can be quite challenging to parametrise, particularly when their structure includes aromatic rings.
 ##### Step 1 – Smooth the equilibration process
@@ -116,7 +116,7 @@ You can then run the production simulation at 10 fs, which is generally sufficie
 If the simulation remains unstable, deeper model optimisation will be required.
 For larger molecules, Auto-Martini M3 generates multiple bonded parameters — including improper dihedrals — to keep the molecule together. However, these can introduce instabilities in GROMACS.
 
-####To troubleshoot:
+#### To troubleshoot:
 
 * Remove all dihedrals and attempt to simulate. If the molecule is stable, reintroduce dihedral angles one by one to identify the problematic one, then exclude it from the final model. Note that having some dihedrals defined is always preferable for keeping planarity of ringed molecules.
 * Review force constant values — the defaults chosen by Auto-Martini M3 may not be optimal. You can refine them using online tools such as Bartender. This requires a special input file, which Auto-Martini M3 can generate automatically using the -bartender flag.
