@@ -104,19 +104,19 @@ gmx trjconv -f 3-run_CAFF_CG.xtc -s 3-run_CAFF_CG.tpr -o 3-run_CAFF_CG_centered.
 If your simulation crashes, you will need to adjust the molecule's topology, either manually or by using open-source tools from the [Martini Universe](https://cgmartini.nl/docs/downloads/tools/topology-structure-generation.html), such as [Bartender](https://github.com/Martini-Force-Field-Initiative/Bartender). During this workshop, we will focus on optimising molecules by hand.
 #### Why small molecules are tricky
 Small molecules can be quite challenging to parametrise, particularly when their structure includes aromatic rings.
-##### Step 1 – Smooth the equilibration process
-A good first step is to divide the equilibration into 3–4 stages with gradually increasing timesteps:
+##### Step 1: Smooth the equilibration process
+A good first step is to divide the equilibration into 3-4 stages with gradually increasing timesteps:
 Start with a very low timestep, e.g. 2 fs
 Increase it incrementally with each stage
 
 Arrive at 10 fs for the final equilibration stage
 You can then run the production simulation at 10 fs, which is generally sufficient for small molecules.
 
-##### Step 2 – Model optimisation (if instabilities persist)
+##### Step 2: Model optimisation (if instabilities persist)
 If the simulation remains unstable, deeper model optimisation will be required.
-For larger molecules, Auto-Martini M3 generates multiple bonded parameters — including improper dihedrals — to keep the molecule together. However, these can introduce instabilities in GROMACS.
+For larger molecules, Auto-Martini M3 generates multiple bonded parameters, including improper dihedrals, to keep the molecule together. However, these can introduce instabilities in GROMACS.
 
 #### To troubleshoot:
 
 * Remove all dihedrals and attempt to simulate. If the molecule is stable, reintroduce dihedral angles one by one to identify the problematic one, then exclude it from the final model. Note that having some dihedrals defined is always preferable for keeping planarity of ringed molecules.
-* Review force constant values — the defaults chosen by Auto-Martini M3 may not be optimal. You can refine them using online tools such as Bartender. This requires a special input file, which Auto-Martini M3 can generate automatically using the -bartender flag.
+* Review force constant values, as the defaults chosen by Auto-Martini M3 may not be optimal. You can refine them using online tools such as Bartender. This requires a special input file, which Auto-Martini M3 can generate automatically using the -bartender flag.
