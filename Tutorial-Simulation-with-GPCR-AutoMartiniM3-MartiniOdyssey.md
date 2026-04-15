@@ -133,7 +133,7 @@ gmx_mpi mdrun -deffnm 3rfm_popc_CAFF_eq3 -v
 * __Production of 2 microseconds__
 ```bash  
 gmx_mpi grompp -f md-A2A-lig.mdp -c 3rfm_popc_CAFF_eq3.gro -r 3rfm_popc_CAFF.gro -p 3rfm_popc_CAFF.top -n 3rfm_popc_CAFF.ndx -o 3rfm_popc_CAFF_md.tpr -maxwarn 3
-gmx_mpi mdrun -deffnm 3rfm_popc_${mol}_md -v -cpi 3rfm_popc_CAFF_md.cpt -noappend
+gmx_mpi mdrun -deffnm 3rfm_popc_CAFF_md -v -cpi 3rfm_popc_CAFF_md.cpt -noappend
 ```
 
 ## Center the system around protein with GROMACS commands 
@@ -144,7 +144,7 @@ gmx_mpi trjconv -s 3rfm_popc_CAFF_md.tpr -f 3rfm_popc_CAFF_md.part0001.xtc -o 3r
 <!-- *   create pdb file for pretty visualisation of bonds
   
  
-    echo 0 | gmx_mpi trjconv -f 3rfm_popc_CAFF_md.part0001.gro -s 3rfm_popc_${mol}_md.tpr -conect -o 3rfm_popc_CAFF_md-conect.pdb -pbc whole
+    echo 0 | gmx_mpi trjconv -f 3rfm_popc_CAFF_md.part0001.gro -s 3rfm_popc_CAFF_md.tpr -conect -o 3rfm_popc_CAFF_md-conect.pdb -pbc whole
     sed -i '/ENDMDL/d'  3rfm_popc_CAFF_md-conect.pdb
 -->
 
