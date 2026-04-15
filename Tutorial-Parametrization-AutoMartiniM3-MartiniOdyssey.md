@@ -8,6 +8,7 @@ Prerequisites: You need to have GROMACS installed on your machine!
     pip install .
 -->
     bash setup.sh
+    source Workshop_AutoM3/bin/activate 
     cd ./Tutorial-Parametrization-datafiles/  
     
 To use AutomartiniM3
