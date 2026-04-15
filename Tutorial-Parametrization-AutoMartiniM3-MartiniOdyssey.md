@@ -7,6 +7,8 @@ Prerequisites: You need to have GROMACS installed on your machine!
     cd Automartini_M3
     pip install .
 -->
+    git clone https://github.com/M2BMI-Lab/Workshop-MartiniOdyssey.git
+    cd Workshop-MartiniOdyssey
     bash setup.sh
     source Workshop_AutoM3/bin/activate 
     cd ./Tutorial-Parametrization-datafiles/  
