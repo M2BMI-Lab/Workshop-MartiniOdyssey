@@ -72,20 +72,20 @@ sed -i -e  s"/LIGAND/CAFF/"g system.top
 
 *  __Minimization__
 ```bash     
-gmx grompp -p system.top -c CAFF_CG_BW.gro -f em-Wat-lig.mdp -o 1-min_CAFF_CG.tpr -po 1-min.mdp  -maxwarn 3
-gmx mdrun -v -deffnm 1-min_CAFF_CG -nt 8 >> mdrun.log 2>&1
+gmx_mpi grompp -p system.top -c CAFF_CG_BW.gro -f em-Wat-lig.mdp -o 1-min_CAFF_CG.tpr -po 1-min.mdp  -maxwarn 3
+gmx_mpi mdrun -v -deffnm 1-min_CAFF_CG >> mdrun.log 2>&1
 ```
 
 *  __Equilibration (NVT)__  
 ```bash
-gmx grompp -p system.top -c 1-min_CAFF_CG.gro -f eq-Wat-lig.mdp -o 2-eq_CAFF_CG.tpr  -po 2-eq.mdp  -maxwarn 3
-gmx mdrun -v -deffnm 2-eq_CAFF_CG  -nt 8  >> mdrun.log 2>&1
+gmx_mpi grompp -p system.top -c 1-min_CAFF_CG.gro -f eq-Wat-lig.mdp -o 2-eq_CAFF_CG.tpr  -po 2-eq.mdp  -maxwarn 3
+gmx_mpi mdrun -v -deffnm 2-eq_CAFF_CG  >> mdrun.log 2>&1
 ```
 
 *  __Production (NPT)__
 ```bash     
-gmx grompp -p system.top -c 2-eq_CAFF_CG.gro -f run-Wat-lig.mdp -o 3-run_CAFF_CG.tpr -po 3-run.mdp  -maxwarn 3
-gmx mdrun -v -deffnm 3-run_CAFF_CG -nt 12
+gmx_mpi grompp -p system.top -c 2-eq_CAFF_CG.gro -f run-Wat-lig.mdp -o 3-run_CAFF_CG.tpr -po 3-run.mdp  -maxwarn 3
+gmx_mpi mdrun -v -deffnm 3-run_CAFF_CG
 ```
  __If the simulation in a water box will finish without any problems, we can go on and work with more complicated system.__
 
@@ -93,7 +93,7 @@ gmx mdrun -v -deffnm 3-run_CAFF_CG -nt 12
 
  - You could center the ligand in th midlle of the water box. To do so, you can use the following command:
 ```bash    
-gmx trjconv -f 3-run_CAFF_CG.xtc -s 3-run_CAFF_CG.tpr -o 3-run_CAFF_CG_centered.xtc -center -pbc mol
+gmx_mpi trjconv -f 3-run_CAFF_CG.xtc -s 3-run_CAFF_CG.tpr -o 3-run_CAFF_CG_centered.xtc -center -pbc mol
 ```
    the flag `-pbc mol` puts the center of mass of molecules in the box,
    
