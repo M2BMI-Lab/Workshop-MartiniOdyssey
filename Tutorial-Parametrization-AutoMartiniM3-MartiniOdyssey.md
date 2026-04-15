@@ -14,8 +14,8 @@ Prerequisites: You need to have GROMACS installed on your machine!
     cd ./Tutorial-Parametrization-datafiles/  
     
 To use AutomartiniM3
-    python -m auto_martiniM3 [mode] [options]
 
+    python -m auto_martiniM3 [mode] [options]
 
     
 ## Creating Coarse-Grained model with Auto-MartiniM3
