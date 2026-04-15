@@ -3,9 +3,10 @@ Prerequisites: You need to have GROMACS installed on your machine!
 
 # Installing Auto-MartiniM3 (without creating conda environment)
 
-    git clone https://github.com/Martini-Force-Field-Initiative/Automartini_M3.git
-    cd Automartini_M3
-    pip install .
+    git clone https://github.com/M2BMI-Lab/Workshop-MartiniOdyssey.git
+    cd Workshop-MartiniOdyssey
+    bash setup.sh
+    source Workshop_AutoM3/bin/activate
     cd ../LaunchMolWatBox/   
     
 To use AutomartiniM3
@@ -53,7 +54,7 @@ mv ../CAFF* ./
 *   Add 10 molecules of ligand to already prepared protein-membrane-solvent system
      
 ```bash
-gmx insert-molecules -f 3rfm_popc.gro -ci CAFF.gro -nmol 10 -try 500 -o 3rfm_popc_CAFF.gro -replace W
+gmx_mpi insert-molecules -f 3rfm_popc.gro -ci CAFF.gro -nmol 10 -try 500 -o 3rfm_popc_CAFF.gro -replace W
 ```
 <p align="center">
   <img src="./images/A2A-caff-binding.jpg" alt="Caffeine in A2A Protein" width="960">  
@@ -102,7 +103,7 @@ echo "${mol}            10" >> 3rfm_popc_${mol}.top
     } > index-selection.txt
 ```
 ```bash    
-    gmx make_ndx -f 3rfm_popc_CAFF.gro -o 3rfm_popc_CAFF.ndx < index-selection.txt
+    gmx_mpi make_ndx -f 3rfm_popc_CAFF.gro -o 3rfm_popc_CAFF.ndx < index-selection.txt
 ```
 
 With system ready, verify if you have all needed input files : topology files, mdp files with GROMACS parameters, etc.
@@ -110,39 +111,39 @@ With system ready, verify if you have all needed input files : topology files, m
 Launch minimization, 4 steps of equilibration where at each step we increase the size of time step, and production of 2 microseconds.
 * __Minimization__
 ```bash  
-gmx grompp -f min-A2A-lig.mdp -c 3rfm_popc_CAFF.gro -r 3rfm_popc_CAFF.gro -p 3rfm_popc_CAFF.top -n 3rfm_popc_CAFF.ndx -o 3rfm_popc_CAFF_min.tpr -maxwarn 2
-gmx mdrun -deffnm 3rfm_popc_CAFF_min -ntmpi 8  -v
+gmx_mpi grompp -f min-A2A-lig.mdp -c 3rfm_popc_CAFF.gro -r 3rfm_popc_CAFF.gro -p 3rfm_popc_CAFF.top -n 3rfm_popc_CAFF.ndx -o 3rfm_popc_CAFF_min.tpr -maxwarn 2
+gmx_mpi mdrun -deffnm 3rfm_popc_CAFF_min -v
 ```
 * __4 steps of equilibration where at each step we increase the size of time step__
 ```bash      
 ## equilibration 1
-gmx grompp -f eq0-A2A-lig.mdp -c 3rfm_popc_CAFF_min.gro -r 3rfm_popc_CAFF.gro -p 3rfm_popc_CAFF.top -n 3rfm_popc_CAFF.ndx -o 3rfm_popc_CAFF_eq0.tpr -maxwarn 3
-gmx mdrun -deffnm 3rfm_popc_CAFF_eq0 -ntmpi 8  -v
+gmx_mpi grompp -f eq0-A2A-lig.mdp -c 3rfm_popc_CAFF_min.gro -r 3rfm_popc_CAFF.gro -p 3rfm_popc_CAFF.top -n 3rfm_popc_CAFF.ndx -o 3rfm_popc_CAFF_eq0.tpr -maxwarn 3
+gmx_mpi mdrun -deffnm 3rfm_popc_CAFF_eq0 -v
 ## equilibration 2
-gmx grompp -f eq1-A2A-lig.mdp -c 3rfm_popc_CAFF_eq0.gro -r 3rfm_popc_CAFF.gro -p 3rfm_popc_CAFF.top -n 3rfm_popc_CAFF.ndx -o 3rfm_popc_CAFF_eq1.tpr -maxwarn 3
-gmx mdrun -deffnm 3rfm_popc_CAFF_eq1 -ntmpi 8  -v
+gmx_mpi grompp -f eq1-A2A-lig.mdp -c 3rfm_popc_CAFF_eq0.gro -r 3rfm_popc_CAFF.gro -p 3rfm_popc_CAFF.top -n 3rfm_popc_CAFF.ndx -o 3rfm_popc_CAFF_eq1.tpr -maxwarn 3
+gmx_mpi mdrun -deffnm 3rfm_popc_CAFF_eq1 -v
 ## equilibration 3    
-gmx grompp -f eq2-A2A-lig.mdp -c 3rfm_popc_CAFF_eq1.gro -r 3rfm_popc_CAFF.gro -p 3rfm_popc_CAFF.top -n 3rfm_popc_CAFF.ndx -o 3rfm_popc_CAFF_eq2.tpr -maxwarn 3
-gmx mdrun -deffnm 3rfm_popc_CAFF_eq2 -ntmpi 8  -v
+gmx_mpi grompp -f eq2-A2A-lig.mdp -c 3rfm_popc_CAFF_eq1.gro -r 3rfm_popc_CAFF.gro -p 3rfm_popc_CAFF.top -n 3rfm_popc_CAFF.ndx -o 3rfm_popc_CAFF_eq2.tpr -maxwarn 3
+gmx_mpi mdrun -deffnm 3rfm_popc_CAFF_eq2 -v
 ## equilibration 4     
-gmx grompp -f eq3-A2A-lig.mdp -c 3rfm_popc_CAFF_eq2.gro -r 3rfm_popc_CAFF.gro -p 3rfm_popc_CAFF.top -n 3rfm_popc_CAFF.ndx -o 3rfm_popc_CAFF_eq3.tpr -maxwarn 3 
-gmx mdrun -deffnm 3rfm_popc_CAFF_eq3 -ntmpi 8  -v
+gmx_mpi grompp -f eq3-A2A-lig.mdp -c 3rfm_popc_CAFF_eq2.gro -r 3rfm_popc_CAFF.gro -p 3rfm_popc_CAFF.top -n 3rfm_popc_CAFF.ndx -o 3rfm_popc_CAFF_eq3.tpr -maxwarn 3 
+gmx_mpi mdrun -deffnm 3rfm_popc_CAFF_eq3 -v
 ```
 * __Production of 2 microseconds__
 ```bash  
-gmx grompp -f md-A2A-lig.mdp -c 3rfm_popc_CAFF_eq3.gro -r 3rfm_popc_CAFF.gro -p 3rfm_popc_CAFF.top -n 3rfm_popc_CAFF.ndx -o 3rfm_popc_CAFF_md.tpr -maxwarn 3
-gmx mdrun -deffnm 3rfm_popc_${mol}_md -ntmpi 8  -v -cpi 3rfm_popc_CAFF_md.cpt -noappend
+gmx_mpi grompp -f md-A2A-lig.mdp -c 3rfm_popc_CAFF_eq3.gro -r 3rfm_popc_CAFF.gro -p 3rfm_popc_CAFF.top -n 3rfm_popc_CAFF.ndx -o 3rfm_popc_CAFF_md.tpr -maxwarn 3
+gmx_mpi mdrun -deffnm 3rfm_popc_${mol}_md -v -cpi 3rfm_popc_CAFF_md.cpt -noappend
 ```
 
 ## Center the system around protein with GROMACS commands 
 ```bash
-    gmx trjconv -s 3rfm_popc_CAFF_md.tpr -f 3rfm_popc_CAFF_md.part0001.xtc -o 3rfm_popc_CAFF_md_centered.xtc -pbc mol -center
+    gmx_mpi trjconv -s 3rfm_popc_CAFF_md.tpr -f 3rfm_popc_CAFF_md.part0001.xtc -o 3rfm_popc_CAFF_md_centered.xtc -pbc mol -center
 ```
 
 <!-- *   create pdb file for pretty visualisation of bonds
   
  
-    echo 0 | gmx trjconv -f 3rfm_popc_CAFF_md.part0001.gro -s 3rfm_popc_${mol}_md.tpr -conect -o 3rfm_popc_CAFF_md-conect.pdb -pbc whole
+    echo 0 | gmx_mpi trjconv -f 3rfm_popc_CAFF_md.part0001.gro -s 3rfm_popc_${mol}_md.tpr -conect -o 3rfm_popc_CAFF_md-conect.pdb -pbc whole
     sed -i '/ENDMDL/d'  3rfm_popc_CAFF_md-conect.pdb
 -->
 
