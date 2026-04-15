@@ -36,8 +36,8 @@ There are two approaches to generate a coarse-grained (CG) model of a small liga
        python -m auto_martiniM3 --sdf caffeine.sdf --mol CAF_SD
 
 <p align="center">
-  <img src="./image/caffeine_AA.png" alt="Caffeine molecule" width="220">  
-  <img src="./image/caffeine_CG.png" alt="Caffeine molecule CG" width="320">  
+  <img src="./images/caffeine_AA.png" alt="Caffeine molecule" width="220">  
+  <img src="./images/caffeine_CG.png" alt="Caffeine molecule CG" width="320">  
 </p>
 <p align="center">
   <em>Figure 1 | Structure of the caffeine molecule</em>
