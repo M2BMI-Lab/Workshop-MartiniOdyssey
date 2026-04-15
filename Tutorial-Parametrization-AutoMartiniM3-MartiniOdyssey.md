@@ -8,7 +8,7 @@ Prerequisites: You need to have GROMACS installed on your machine!
     pip install .
 -->
     bash setup.sh
-    cd ../Tutorial-Parametrization-datafiles/  
+    cd ./Tutorial-Parametrization-datafiles/  
     
 To use AutomartiniM3
     python -m auto_martiniM3 [mode] [options]
