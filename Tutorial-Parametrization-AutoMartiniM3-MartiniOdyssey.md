@@ -2,10 +2,12 @@ Prerequisites: You need to have GROMACS installed on your machine!
 
 
 # Installing Auto-MartiniM3 (without creating conda environment)
-
+<!-- 
     git clone https://github.com/Martini-Force-Field-Initiative/Automartini_M3.git
     cd Automartini_M3
     pip install .
+-->
+    bash setup.sh
     cd ../Tutorial-Parametrization-datafiles/  
     
 To use AutomartiniM3
