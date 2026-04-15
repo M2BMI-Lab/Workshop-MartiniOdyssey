@@ -8,6 +8,7 @@ Prerequisites: You need to have GROMACS installed on your machine!
     bash setup.sh
     source Workshop_AutoM3/bin/activate
     cd ../LaunchMolWatBox/   
+    <!-- cd Tutorial-Parametrization-datafiles/ -->
     
 To use AutomartiniM3
 
