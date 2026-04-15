@@ -70,8 +70,8 @@ gmx_mpi insert-molecules -f 3rfm_popc.gro -ci CAFF.gro -nmol 10 -try 500 -o 3rfm
 ```bash
 cp 3rfm_popc.top 3rfm_popc_CAFF.top
 ```
-*   In the new topology just create  you have change the string ```molname``` by the name of your molecule.
-    In this example, replace `molname` with `CAFF`
+*   In the new topology just create  you have change the string ```LIGAND``` by the name of your molecule.
+    In this example, replace `LIGAND` with `CAFF`
 
 ```bash
 sed  d -i s"/LIGAND/CAFF/" 3rfm_popc_CAFF.top
