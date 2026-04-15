@@ -1,6 +1,6 @@
 ; Include forcefield parameters
-#include "../itps/martini_v3.0.0.itp"
-#include "../itps/martini_v3.0.0_solvents_v1.itp"
+#include "./itps/martini_v3.0.0.itp"
+#include "./itps/martini_v3.0.0_solvents_v1.itp"
 
 #include "LIGAND.itp"
 
