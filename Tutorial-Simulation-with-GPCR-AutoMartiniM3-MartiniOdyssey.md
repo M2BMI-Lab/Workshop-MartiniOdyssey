@@ -74,7 +74,7 @@ cp 3rfm_popc.top 3rfm_popc_CAFF.top
     In this example, replace `LIGAND` with `CAFF`
 
 ```bash
-sed  d -i s"/LIGAND/CAFF/" 3rfm_popc_CAFF.top
+sed -i "s/LIGAND/CAFF/g" 3rfm_popc_CAFF.top
 ```
     
 *   Then, determine the number of sodium ions, chloride ions, and water molecules in the newly created structure file, either manually or by using the following small script:
