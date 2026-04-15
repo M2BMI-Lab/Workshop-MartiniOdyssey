@@ -51,7 +51,7 @@ We simulate without a priori, so that we could see if any interactions occur by 
 *  Go to repository with all needed files (remember to move the topology and coordinates files of the liand with you)
 ```bash
 cd Tutorial-Simulation-with-GPCR-datafiles/
-mv ../CAFF* ./
+cp ../Tutorial-Parametrization-datafiles/CAFF* .
 ```
 
 *   Add 10 molecules of ligand to already prepared protein-membrane-solvent system
