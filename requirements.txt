@@ -1,0 +1,2 @@
+rdkit==2024.3.5
+git+https://github.com/Martini-Force-Field-Initiative/Automartini_M3.git
