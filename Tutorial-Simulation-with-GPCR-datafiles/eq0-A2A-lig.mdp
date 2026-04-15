@@ -1,4 +1,4 @@
-define                   = -DPOSRES
+;define                   = -DPOSRES
 integrator               = md
 dt                       = 0.002 
 nsteps                   = 500000 ; 1 ns
