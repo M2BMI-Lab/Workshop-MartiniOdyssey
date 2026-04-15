@@ -48,7 +48,7 @@ We simulate without a priori, so that we could see if any interactions occur by 
 
 *  Go to repository with all needed files (remember to move the topology and coordinates files of the liand with you)
 ```bash
-cd Tutorial-Simulation-with-GPCR-datafiles/
+cd ../Tutorial-Simulation-with-GPCR-datafiles/
 cp ../Tutorial-Parametrization-datafiles/CAFF* .
 ```
 
