@@ -137,7 +137,7 @@ gmx_mpi mdrun -deffnm 3rfm_popc_${mol}_md -v -cpi 3rfm_popc_CAFF_md.cpt -noappen
 
 ## Center the system around protein with GROMACS commands 
 ```bash
-    gmx_mpi trjconv -s 3rfm_popc_CAFF_md.tpr -f 3rfm_popc_CAFF_md.part0001.xtc -o 3rfm_popc_CAFF_md_centered.xtc -pbc mol -center
+gmx_mpi trjconv -s 3rfm_popc_CAFF_md.tpr -f 3rfm_popc_CAFF_md.part0001.xtc -o 3rfm_popc_CAFF_md_centered.xtc -pbc mol -center
 ```
 
 <!-- *   create pdb file for pretty visualisation of bonds
