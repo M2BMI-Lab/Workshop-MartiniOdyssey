@@ -202,5 +202,7 @@ VolMap - creates volumetric maps based on the molecular data.  We will use the d
   <img src="./images/A2A_MADligands.png" alt="Volmaps of MAD ligands with A2A Protein" width="960">  
 </p>
 <p align="center">
-  <em>Figure 2 | VolMap Visualisation of MAD molecules with A2A receptor in POPC membrane</em>
+  <em>Figure 3 | VolMap Visualisation of MAD molecules with A2A receptor in POPC membrane</em>
 </p>
+
+Link to access simulation files is [here](https://www.dropbox.com/scl/fo/3fqjzrayg95royxw9txgc/AIE_eIKfUjFCyOVfFkuVLHA?rlkey=5m93hoo8q37kayiho5dsho4cn&st=pzz94rmy&dl=0).
