@@ -194,3 +194,13 @@ VolMap - creates volumetric maps based on the molecular data.  We will use the d
  
 
     Extensions -> Analysis -> VolMap Tool ; selection: resname CAFF ; volmap type: density ; resolution: 1.0 A ; atom size: 1.0 x radius ; weights: mass ; check compute for all frames, and combine using avg ; click Create Map
+
+
+#### Exemplary Simulations of A2A with Some Ligands from MAD repository      
+
+<p align="center">
+  <img src="./images/A2A_MADligands.png" alt="Volmaps of MAD ligands with A2A Protein" width="960">  
+</p>
+<p align="center">
+  <em>Figure 2 | VolMap Visualisation of MAD molecules with A2A receptor in POPC membrane</em>
+</p>
