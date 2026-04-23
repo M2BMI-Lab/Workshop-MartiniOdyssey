@@ -309,6 +309,9 @@ VolMap - creates volumetric maps based on the molecular data.  We will use the d
 
 ### References
 [1](https://www.nature.com/articles/s41592-021-01098-3) Souza, P.C.T., Alessandri, R., Barnoud, J. et al. Martini 3: a general purpose force field for coarse-grained molecular dynamics. Nat Methods 18, 382–388 (2021).
+
 [2](https://doi.org/10.1002/adts.202100391) Alessandri, R., Barnoud, J., Gertsen, A.S., Patmanidis, I., de Vries, A.H., Souza, P.C.T. and Marrink, S.J. (2022), Martini 3 Coarse-Grained Force Field: Small Molecules. Adv. Theory Simul., 5: 2100391. 
+
 [3](https://doi.org/10.1038/s41467-020-17437-5) Souza, P.C.T., Thallmair, S., Conflitti, P. et al. Protein–ligand binding with the coarse-grained Martini model. Nat Commun 11, 3714 (2020).
+
 [4](https://doi.org/10.1016/0263-7855(96)00018-5) William Humphrey, Andrew Dalke, Klaus Schulten, VMD: Visual molecular dynamics, Journal of Molecular Graphics, Volume 14, Issue 1, 1996, Pages 33-38.
